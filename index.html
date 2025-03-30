@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrapGen Ultra</title>
+  <!-- Load the SuperCollider communication library -->
+  <script src="sclang.js"></script>
+  <style>
+    /* Fresh ocean blue vibes with clean styling */
+    body {
+      background-color: #1E90FF;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .controls button {
+      background-color: #fff;
+      color: #1E90FF;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .controls button:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TrapGen Ultra</h1>
+    <p>
+      This trap generator is powered by SuperCollider. Load your SC code into the server first,
+      then use the buttons below to trigger each synth and create your unique trap beats.
+    </p>
+    <div class="controls">
+      <button onclick="triggerKick()">Kick</button>
+      <button onclick="triggerSub()">Sub</button>
+      <button onclick="triggerClap()">Clap</button>
+      <button onclick="triggerSnare()">Snare</button>
+      <button onclick="triggerHat()">Hi-Hat</button>
+      <button onclick="triggerFmPad()">FM Pad</button>
+      <button onclick="triggerMelodyFx()">Melody FX</button>
+      <button onclick="triggerReverseCymbal()">Reverse Cymbal</button>
+      <!-- You might not trigger drumfx manually since it's set up to run in the background -->
+      <button onclick="newTrack()">New Track (Sequence)</button>
+    </div>
+  </div>
+
+  <script>
+    // IMPORTANT: Make sure your SuperCollider server is running
+    // and your SC code (SynthDefs, routines, etc.) is loaded before using these functions.
+
+    // Each function sends an OSC command using sclang.js to trigger a specific synth.
+
+    function triggerKick() {
+      sclang.send("/s_new", "kick", -1, 1, 0);
+      console.log("Kick triggered!");
+    }
+
+    function triggerSub() {
+      sclang.send("/s_new", "sub", -1, 1, 0);
+      console.log("Sub triggered!");
+    }
+
+    function triggerClap() {
+      sclang.send("/s_new", "clap", -1, 1, 0);
+      console.log("Clap triggered!");
+    }
+
+    function triggerSnare() {
+      sclang.send("/s_new", "snare", -1, 1, 0);
+      console.log("Snare triggered!");
+    }
+
+    function triggerHat() {
+      sclang.send("/s_new", "hat", -1, 1, 0);
+      console.log("Hi-Hat triggered!");
+    }
+
+    function triggerFmPad() {
+      sclang.send("/s_new", "fmPad", -1, 1, 0);
+      console.log("FM Pad triggered!");
+    }
+
+    function triggerMelodyFx() {
+      sclang.send("/s_new", "melodyFx", -1, 1, 0);
+      console.log("Melody FX triggered!");
+    }
+
+    function triggerReverseCymbal() {
+      sclang.send("/s_new", "reverseCymbal", -1, 1, 0);
+      console.log("Reverse Cymbal triggered!");
+    }
+
+    // New Track function triggers all synths instantly, one right after the other.
+    function newTrack() {
+      triggerKick();
+      triggerSub();
+      triggerClap();
+      triggerSnare();
+      triggerHat();
+      triggerFmPad();
+      triggerMelodyFx();
+      triggerReverseCymbal();
+      console.log("New track sequence triggered immediately!");
+    }
+  </script>
+</body>
+</html>
