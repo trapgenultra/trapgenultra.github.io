@@ -5,7 +5,7 @@
 
 const sclang = {
   // Change this URL if your SC server is running on a different host/port or endpoint.
-  serverUrl: 'http://localhost:57120/osc',
+  serverUrl: 'http://localhost:57110/osc',
 
   // Sends an OSC message with a given address and arguments.
   send: function(address, ...args) {
